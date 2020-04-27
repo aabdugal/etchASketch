@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+     <head>
+         <script src ="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+     </head>
+    <body>
+        <button id="buttonClicked">Set Another</button>
+
+    </body>
+  
+</html>
+<script>
+    const container = document.createElement('p');
+    container.style="display:grid; grid-template: repeat(16,50px) /repeat(16,50px);";
+    
+    for(i=0;i<256;i++){
+        let divs = document.createElement('div');
+        divs.id='change';
+        container.appendChild(divs);
+    }
+    document.body.appendChild(container);
+
+    document.getElementById('buttonClicked').onclick=function(){
+        console.log("CLicked");
+        let size = prompt("What size?");
+        console.log(size);
+        document.body.removeChild(container);
+        let newCont = document.createElement('p');
+        let pat=`display:grid; grid-template: repeat(${size},${1000/size}px) / repeat(${size},${1000/size}px);`;
+        newCont.style=pat;
+        console.log(pat)
+        for(i=0;i<size*size;i++){
+            let divs = document.createElement('div');
+            divs.id="change";
+            newCont.appendChild(divs);
+        }
+        document.body.appendChild(newCont);
+        colorBlue();
+    };
+
+    
+    $(document).ready(function(){
+        colorBlue();
+    });
+
+    function colorBlue(){
+        $("div").hover(function(){
+            $(this).css("background-color","blue");
+        })
+    }
+
+</script>
